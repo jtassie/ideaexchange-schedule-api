@@ -2,6 +2,8 @@ package org.ideaexchange;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -12,6 +14,8 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class Main {
 
+	final static Logger logger = LoggerFactory.getLogger(Main.class);
+	
     /**
      * @param args
      */
@@ -24,6 +28,8 @@ public class Main {
         if (webPort == null || webPort.isEmpty()) {
             webPort = "8080";
         }
+        
+        logger.info("Starting up on port: " + webPort);
 
         Server server = new Server(Integer.valueOf(webPort));
         WebAppContext root = new WebAppContext();
