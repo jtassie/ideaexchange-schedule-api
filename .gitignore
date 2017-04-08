@@ -13,6 +13,8 @@ hs_err_pid*
 /target/
 /schedule-api/target/
 
+
 .classpath
 .project
 /.settings/
+/schedule-api/.settings/
