@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* com.example.Main
+web: java -cp schedule-api/target/classes:schedule-api/target/dependency/* com.example.Main
