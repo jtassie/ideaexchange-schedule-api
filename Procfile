@@ -1,1 +1,1 @@
-web: java -cp schedule-api/target/classes/:schedule-api/target/dependency/* org.ideaexchange.Main
+web: java $JAVA_OPTS -jar schedule-api/target/dependency/jetty-runner.jar --port $PORT schedule-api/target/*.war
