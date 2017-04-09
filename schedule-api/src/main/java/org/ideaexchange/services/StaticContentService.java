@@ -10,14 +10,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.ideaexchange.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Path("/static")
 public class StaticContentService {
 
-	final static Logger logger = LoggerFactory.getLogger(Main.class);
+	final static Logger logger = LoggerFactory.getLogger(StaticContentService.class);
 	
 	@GET
 	@Path("{path:.*}")
