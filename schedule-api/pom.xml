@@ -77,9 +77,7 @@
 			    <executions>
 			        <execution>
 			            <phase>install</phase>
-			            <goals>
-			                <goal>analyze-jaxrs</goal>
-			            </goals>
+			            <goals><goal>analyze-jaxrs</goal></goals>
 			            <configuration>
 			                <backend>swagger</backend>
 			                <deployedDomain>example.com</deployedDomain>
@@ -87,33 +85,53 @@
 			        </execution>
 			    </executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.3</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals><goal>copy</goal></goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.eclipse.jetty</groupId>
+									<artifactId>jetty-runner</artifactId>
+									<version>9.2.7.v20150116</version>
+									<destFileName>jetty-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+					   <id>second-build</id>
+                    <phase>install</phase>
+                    <goals>
+                        <goal>war</goal>
+                    </goals>
+						<configuration>
+						  <webResources>
+							<resource>
+							  <!-- this is relative to the pom.xml directory -->
+							  <directory>target/jaxrs-analyzer</directory>
+							</resource>
+						  </webResources>
+						</configuration>
+                </execution>
+            </executions>
+			</plugin>
         </plugins>
 
         <pluginManagement>
             <plugins>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.3</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<goals><goal>copy</goal></goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>org.eclipse.jetty</groupId>
-											<artifactId>jetty-runner</artifactId>
-											<version>9.2.7.v20150116</version>
-											<destFileName>jetty-runner.jar</destFileName>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-			
                 <!-- M2Eclipse Compatibility -->
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
